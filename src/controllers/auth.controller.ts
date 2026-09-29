@@ -2,6 +2,7 @@ import { Request, Response } from 'express';
 import { registerUser } from '../services/auth.service';
 
 import { loginUser } from '../services/auth.service';
+import { getUserProfile } from '../services/auth.service';
 
 export const register = async (
     req: Request,
@@ -44,6 +45,38 @@ export const login = async (
             message: error instanceof Error
                 ? error.message
                 : 'Login failed',
+        });
+    }
+};
+
+export const getProfile = async (
+    req: Request,
+    res: Response
+): Promise<void> => {
+    try {
+        const userId = req.user?.userId;
+
+        if (!userId) {
+            res.status(401).json({
+                success: false,
+                message: 'Unauthorized',
+            });
+            return;
+        }
+
+        const user = await getUserProfile(userId);
+
+        res.status(200).json({
+            success: true,
+            message: 'Profile fetched successfully',
+            data: user,
+        });
+    } catch (error) {
+        res.status(404).json({
+            success: false,
+            message: error instanceof Error
+                ? error.message
+                : 'Something went wrong',
         });
     }
 };
