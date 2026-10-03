@@ -2,6 +2,10 @@ import express from 'express';
 import cors from 'cors';
 import authRoutes from './routes/auth.routes';
 import loggerMiddleware from './middlewares/logger.middleware';
+import yearRoutes from './routes/year.routes';
+
+
+
 const app = express();
 
 app.use(cors());
@@ -16,5 +20,6 @@ app.get('/', (_req, res) => {
 });
 
 app.use('/api/auth', authRoutes);
+app.use('/api/years', yearRoutes);
 
 export default app;
