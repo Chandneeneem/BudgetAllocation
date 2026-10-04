@@ -1,7 +1,4 @@
 import Year from '../models/year.model';
-
-
-
 interface UpdateYearData {
     year?: number;
     status?: 'ACTIVE' | 'INACTIVE';
@@ -37,33 +34,6 @@ export const getYearById = async (id: string) => {
 
     return year;
 };
-
-// export const updateYear = async (
-//     id: string,
-//     data: UpdateYearData
-// ) => {
-//     const existingYear = await Year.findById(id);
-
-//     if (!existingYear) {
-//         throw new Error('Year not found');
-//     }
-
-//     if (data.year && data.year !== existingYear.year) {
-//         const duplicateYear = await Year.findOne({
-//             year: data.year,
-//             _id: { $ne: id },
-//         });
-
-//         if (duplicateYear) {
-//             throw new Error('Year already exists');
-//         }
-//     }
-
-//     existingYear.year = data.year ?? existingYear.year;
-//     existingYear.status = data.status ?? existingYear.status;
-
-//     return existingYear.save();
-// };
 
 export const updateYear = async (
     id: string,
