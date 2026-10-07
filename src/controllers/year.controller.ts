@@ -29,26 +29,6 @@ export const createYear = async (
     }
 };
 
-// export const getYears = async (
-//     _req: Request,
-//     res: Response
-// ) => {
-//     try {
-//         const years = await yearService.getYears();
-
-//         return res.status(200).json({
-//             success: true,
-//             data: years,
-//         });
-//     } catch (error) {
-//         return res.status(500).json({
-//             success: false,
-//             message: error instanceof Error
-//                 ? error.message
-//                 : 'Something went wrong',
-//         });
-//     }
-// };
 export const getYears = async (
     req: Request,
     res: Response
@@ -56,22 +36,24 @@ export const getYears = async (
     try {
         const page = Number(req.query.page) || 1;
         const limit = Number(req.query.limit) || 10;
+        const search = String(req.query.search || '');
 
-        const years = await yearService.getYears(page, limit);
+        const years = await yearService.getYears(
+            page,
+            limit,
+            search
+        );
 
         return res.status(200).json({
             success: true,
-            page,
-            limit,
             data: years,
         });
     } catch (error) {
         return res.status(500).json({
             success: false,
-            message:
-                error instanceof Error
-                    ? error.message
-                    : 'Something went wrong',
+            message: error instanceof Error
+                ? error.message
+                : 'Something went wrong',
         });
     }
 };

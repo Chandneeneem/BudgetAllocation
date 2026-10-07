@@ -21,10 +21,34 @@ export const createYear = async (
     return Year.create(data);
 };
 
-export const getYears = async () => {
-    return await Year.find().sort({ year: -1 });
-};
+export const getYears = async (
+    page: number,
+    limit: number,
+    search: string = ''
+) => {
+    const skip = (page - 1) * limit;
 
+    const query = search
+        ? { year: { $regex: search, $options: 'i' } }
+        : {};
+
+    const [years, total] = await Promise.all([
+        Year.find(query)
+            .skip(skip)
+            .limit(limit)
+            .sort({ year: -1 }),
+
+        Year.countDocuments(query),
+    ]);
+
+    return {
+        data: years,
+        total,
+        page,
+        limit,
+        totalPages: Math.ceil(total / limit),
+    };
+};
 export const getYearById = async (id: string) => {
     const year = await Year.findById(id);
 
