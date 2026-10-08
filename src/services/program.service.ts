@@ -39,7 +39,6 @@ export const getPrograms = async ({
     search,
 }: GetProgramsParams) => {
     const skip = (page - 1) * limit;
-
     const filter: {
         name?: {
             $regex: string;

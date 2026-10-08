@@ -14,12 +14,12 @@ const router = Router();
 
 router.post('/', authMiddleware, createProgram);
 
-// router.get('/', authMiddleware, getPrograms);
+router.get('/', authMiddleware, getPrograms);
 
 // router.get('/:id', authMiddleware, getProgramById);
 
-// router.put('/', authMiddleware, updateProgram);
+router.put('/', authMiddleware, updateProgram);
 
-// router.delete('/', authMiddleware, deleteProgram);
+router.delete('/', authMiddleware, deleteProgram);
 
 export default router;
