@@ -3,7 +3,7 @@ import { Router } from 'express';
 import {
     createProgram,
     getPrograms,
-    getProgramById,
+    // getProgramById,
     updateProgram,
     deleteProgram,
 } from '../controllers/program.controller';

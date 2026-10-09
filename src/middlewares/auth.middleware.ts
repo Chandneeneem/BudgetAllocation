@@ -1,10 +1,6 @@
 import { Request, Response, NextFunction } from 'express';
 import jwt from 'jsonwebtoken';
-
-interface JwtPayload {
-    userId: string;
-    role: string;
-}
+import { JwtPayload } from '../types/auth.type';
 
 const authMiddleware = (
     req: Request,

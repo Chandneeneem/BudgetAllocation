@@ -1,11 +1,5 @@
 import Year from '../models/year.model';
-interface UpdateYearData {
-    year?: number;
-    status?: 'ACTIVE' | 'INACTIVE';
-}
-interface CreateYearData {
-    year: number;
-}
+import { CreateYearData, UpdateYearData } from '../types/year.type';
 
 export const createYear = async (
     data: CreateYearData
@@ -33,12 +27,12 @@ export const getYears = async (
         : {};
 
     const [years, total] = await Promise.all([
-        Year.find(query)
+        Year.find(query as any)
             .skip(skip)
             .limit(limit)
             .sort({ year: -1 }),
 
-        Year.countDocuments(query),
+        Year.countDocuments(query as any),
     ]);
 
     return {
@@ -49,6 +43,7 @@ export const getYears = async (
         totalPages: Math.ceil(total / limit),
     };
 };
+
 export const getYearById = async (id: string) => {
     const year = await Year.findById(id);
 
@@ -83,6 +78,7 @@ export const updateYear = async (
 
     return existingYear.save();
 };
+
 export const deleteYear = async (id: string) => {
     const year = await Year.findById(id);
 

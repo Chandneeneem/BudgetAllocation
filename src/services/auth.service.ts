@@ -1,16 +1,7 @@
 import bcrypt from 'bcryptjs';
 import User from '../models/user.model';
 import { generateAccessToken } from '../utils/jwt';
-interface RegisterData {
-    name: string;
-    email: string;
-    password: string;
-}
-
-interface LoginData {
-    email: string;
-    password: string;
-}
+import { LoginData, RegisterData } from '../types/auth.type';
 
 export const registerUser = async (data: RegisterData) => {
     const { name, email, password } = data;

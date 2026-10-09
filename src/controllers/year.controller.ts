@@ -63,7 +63,7 @@ export const getYearById = async (
 ) => {
     try {
         const year = await yearService.getYearById(
-            req.params.id
+            req.params.id as string
         );
 
         return res.status(200).json({
@@ -112,7 +112,7 @@ export const deleteYear = async (
     res: Response
 ) => {
     try {
-        await yearService.deleteYear(req.params.id);
+        await yearService.deleteYear(req.params.id as string);
 
         return res.status(200).json({
             success: true,

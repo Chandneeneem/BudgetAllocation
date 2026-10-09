@@ -1,21 +1,6 @@
 import Program from '../models/program.model';
+import { CreateProgramData, GetProgramsParams, UpdateProgramData } from '../types/program.type';
 
-interface CreateProgramData {
-    name: string;
-    description: string;
-}
-
-interface UpdateProgramData {
-    id: string;
-    name?: string;
-    description?: string;
-}
-
-interface GetProgramsParams {
-    page: number;
-    limit: number;
-    search?: string;
-}
 
 // Create Program
 export const createProgram = async (
