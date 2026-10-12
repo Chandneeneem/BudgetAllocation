@@ -4,6 +4,7 @@ import authRoutes from './routes/auth.routes';
 import loggerMiddleware from './middlewares/logger.middleware';
 import yearRoutes from './routes/year.routes';
 import programRoutes from './routes/program.routes';
+import locationDepartmentRoutes from './routes/locationDepartment.routes';
 
 
 const app = express();
@@ -19,6 +20,8 @@ app.get('/', (_req, res) => {
     });
 });
 
+
+app.use('/api/location-departments', locationDepartmentRoutes);
 app.use('/api/auth', authRoutes);
 app.use('/api/years', yearRoutes);
 app.use('/api/programs', programRoutes);
