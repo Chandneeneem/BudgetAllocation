@@ -26,4 +26,3 @@ jobs:
 
       - name: Build TypeScript
         run: npm run build
-        git add .github/workflows/ci.yml
