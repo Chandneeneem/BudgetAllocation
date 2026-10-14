@@ -75,7 +75,7 @@ export const getLocationDepartmentById = async (
     try {
         const department =
             await locationDepartmentService.getLocationDepartmentById(
-                req.params.id
+                req.params.id as string
             );
 
         return res.status(200).json({
